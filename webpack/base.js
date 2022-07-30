@@ -1,40 +1,40 @@
-const webpack = require("webpack");
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: "development",
-  devtool: "eval-source-map",
+  mode: 'development',
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
       {
         test: [/\.vert$/, /\.frag$/],
-        use: "raw-loader",
+        use: 'raw-loader',
       },
       {
         test: /\.(gif|png|jpe?g|svg|xml)$/i,
-        use: "file-loader",
+        use: 'file-loader',
       },
     ],
   },
   plugins: [
     new CleanWebpackPlugin({
-      root: path.resolve(__dirname, "../"),
+      root: path.resolve(__dirname, '../'),
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: "src/assets",
-          to: "assets",
+          from: 'src/assets',
+          to: 'assets',
         },
       ],
     }),
@@ -43,7 +43,7 @@ module.exports = {
       WEBGL_RENDERER: JSON.stringify(true),
     }),
     new HtmlWebpackPlugin({
-      template: "./index.html",
+      template: './index.html',
     }),
   ],
 };
